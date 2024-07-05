@@ -32,3 +32,5 @@ material_override = SubResource("StandardMaterial3D_l11jl")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Idle"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="2"]

@@ -121,5 +121,4 @@ void fragment() {
 	EMISSION = vec3(n_out25p0);
 
 
-
 }
