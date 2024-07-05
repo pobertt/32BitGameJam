@@ -1,3 +1,33 @@
-[gd_scene format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=5 format=3 uid="uid://cf3fulblelx4m"]
+
+[ext_resource type="Shader" path="res://ocean.gdshader" id="1_ow8ac"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yms50"]
+render_priority = 0
+shader = ExtResource("1_ow8ac")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(100, 100)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3b31k"]
+material = SubResource("ShaderMaterial_yms50")
+size = Vector2(2000, 2000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qss42"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [node name="world" type="Node3D"]
+
+[node name="ocean" type="Node3D" parent="."]
+
+[node name="floor1" type="MeshInstance3D" parent="ocean"]
+mesh = SubResource("PlaneMesh_3b31k")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ocean/floor1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ocean/floor1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_qss42")
