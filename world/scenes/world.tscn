@@ -1,16 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=8 format=3 uid="uid://cf3fulblelx4m"]
 
-[ext_resource type="Shader" path="res://world/shaders/ocean.gdshader" id="1_oclbx"]
+[ext_resource type="Shader" path="res://world/shaders/stylizedwater.gdshader" id="1_5suio"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0fdt3"]
+load_path = "res://.godot/imported/Mat_Cardboard_Neutral_01-128x128.png-38138f11bf0df6a108db638bc37dc43b.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tpe1t"]
+load_path = "res://.godot/imported/Mat_Cardboard_Brown_01-128x128.png-2f6f9000ffd17a8453cc74f6a3fea40f.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yms50"]
 render_priority = 0
-shader = ExtResource("1_oclbx")
-shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
-shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
-shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
-shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(5, 5)
-shader_parameter/wave_speed = 1.5
+shader = ExtResource("1_5suio")
+shader_parameter/WaveSpeed = 0.01
+shader_parameter/WaveIntensity = 0.2
+shader_parameter/WaveColor = Color(0, 1, 0.986607, 1)
+shader_parameter/WaterColor = Color(0, 0.169643, 1, 1)
+shader_parameter/FoamSize = 0.1
+shader_parameter/WaterOpacity = 0.4
+shader_parameter/tex_frg_19 = SubResource("CompressedTexture2D_tpe1t")
+shader_parameter/tex_frg_11 = SubResource("CompressedTexture2D_0fdt3")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3b31k"]
 material = SubResource("ShaderMaterial_yms50")
@@ -20,6 +28,8 @@ subdivide_depth = 16
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qss42"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rryqk"]
 
 [node name="world" type="Node3D"]
 
@@ -34,11 +44,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ocean/windwaker/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_qss42")
 
-[node name="stylized" type="MeshInstance3D" parent="ocean"]
-visible = false
-mesh = SubResource("PlaneMesh_3b31k")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="ocean/stylized"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ocean/stylized/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_qss42")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522108, -0.113266, 4.69911)
+mesh = SubResource("BoxMesh_rryqk")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxmdmoueib4x"]
+
+[ext_resource type="PackedScene" uid="uid://dusn3ygswaywe" path="res://assets/PSX Villager Man/MaleVillager.glb" id="1_f30cy"]
+[ext_resource type="Texture2D" uid="uid://cj0anb6diafuv" path="res://assets/PSX Villager Man/MaleVillagerTexture.png" id="2_xr0vt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nng44"]
+albedo_texture = ExtResource("2_xr0vt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l11jl"]
+albedo_texture = ExtResource("2_xr0vt")
+
+[node name="MaleVillager" instance=ExtResource("1_f30cy")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(-2.1412e-16, 1.34362, -3.55319e-15)
+bones/1/rotation = Quaternion(1.58009e-08, -9.48052e-10, -9.48052e-10, 1)
+bones/2/rotation = Quaternion(-1.77636e-15, 1.11022e-16, 2.99602e-17, 1)
+bones/3/rotation = Quaternion(0.000202119, -0.00305036, 0.998502, -0.0546271)
+bones/5/rotation = Quaternion(-0.100398, -0.00135706, -0.10837, 0.989027)
+bones/6/rotation = Quaternion(-0.00133575, -0.0232023, 0.998949, 0.0395146)
+bones/7/rotation = Quaternion(0.113968, 0.000649584, -0.00518444, 0.993471)
+bones/9/rotation = Quaternion(-0.000732364, 0.0204787, 0.999789, -0.00135006)
+bones/10/rotation = Quaternion(-0.046537, 3.41943e-05, -0.00760533, 0.998888)
+bones/11/rotation = Quaternion(0.655741, 0.0596589, 0.0768705, 0.748689)
+bones/13/rotation = Quaternion(-0.0457893, -0.000843591, 0.0133842, 0.998861)
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_nng44")
+
+[node name="Hat" parent="Armature/Skeleton3D" index="1"]
+material_override = SubResource("StandardMaterial3D_l11jl")
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"
