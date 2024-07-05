@@ -1,7 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=12 format=3 uid="uid://cf3fulblelx4m"]
 
+[ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
 [ext_resource type="PackedScene" uid="uid://dxmdmoueib4x" path="res://assets/scenes/malevillager.tscn" id="2_03plx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsaa1"]
+shader = ExtResource("1_aqwbn")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 2
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,30 +43,45 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_rryqk"]
 
-[node name="world" type="Node3D"]
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_hsaa1")
+offset_top = -4.0
+offset_right = 1920.0
+offset_bottom = 1078.0
+stretch = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1082)
+render_target_update_mode = 4
+
+[node name="world" type="Node3D" parent="SubViewport"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/world"]
 environment = SubResource("Environment_coafa")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/world"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="ocean" type="Node3D" parent="."]
+[node name="ocean" type="Node3D" parent="SubViewport/world"]
 
-[node name="floor" type="MeshInstance3D" parent="ocean"]
+[node name="floor" type="MeshInstance3D" parent="SubViewport/world/ocean"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
 mesh = SubResource("PlaneMesh_3b31k")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ocean/floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/world/ocean/floor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ocean/floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/world/ocean/floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_qss42")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/world"]
 transform = Transform3D(2.17076, 0, 0, 0, 1, 0, 0, 0, 2.4884, 0.522108, -0.202118, 4.89916)
 mesh = SubResource("BoxMesh_rryqk")
 
-[node name="MaleVillager" parent="." instance=ExtResource("2_03plx")]
+[node name="MaleVillager" parent="SubViewport/world" instance=ExtResource("2_03plx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38639, -0.559543, 2.03384)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54511, 1.60806, 6.4023)
