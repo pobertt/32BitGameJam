@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=11 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-[ext_resource type="PackedScene" uid="uid://dxmdmoueib4x" path="res://assets/scenes/malevillager.tscn" id="2_03plx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsaa1"]
 shader = ExtResource("1_aqwbn")
@@ -38,10 +37,11 @@ material = SubResource("ShaderMaterial_hweut")
 size = Vector2(200, 200)
 subdivide_width = 16
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qss42"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+[sub_resource type="PlaneMesh" id="PlaneMesh_vbm3l"]
+size = Vector2(50, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_rryqk"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vbjd7"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_hsaa1")
@@ -64,24 +64,36 @@ environment = SubResource("Environment_coafa")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="ocean" type="Node3D" parent="SubViewport/world"]
+[node name="Camera3D" type="Camera3D" parent="SubViewport/world"]
+transform = Transform3D(1, 0, 0, 0, 0.933749, 0.357928, 0, -0.357928, 0.933749, -0.220991, 2.99175, 6.4023)
 
-[node name="floor" type="MeshInstance3D" parent="SubViewport/world/ocean"]
+[node name="environment" type="Node3D" parent="SubViewport/world"]
+
+[node name="ocean" type="Node3D" parent="SubViewport/world/environment"]
+
+[node name="mesh" type="MeshInstance3D" parent="SubViewport/world/environment/ocean"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
 mesh = SubResource("PlaneMesh_3b31k")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/world/ocean/floor"]
+[node name="floors" type="Node3D" parent="SubViewport/world/environment"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/world/ocean/floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_qss42")
+[node name="floor1" type="MeshInstance3D" parent="SubViewport/world/environment/floors"]
+transform = Transform3D(1, 0, 0, 0, 0.980765, -0.195193, 0, 0.195193, 0.980765, -24.104, -1.50766, -64.1192)
+mesh = SubResource("PlaneMesh_vbm3l")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/world"]
-transform = Transform3D(2.17076, 0, 0, 0, 1, 0, 0, 0, 2.4884, 0.522108, -0.202118, 4.89916)
-mesh = SubResource("BoxMesh_rryqk")
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/world/environment/floors/floor1"]
 
-[node name="MaleVillager" parent="SubViewport/world" instance=ExtResource("2_03plx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38639, -0.559543, 2.03384)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/world/environment/floors/floor1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vbjd7")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport/world"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54511, 1.60806, 6.4023)
+[node name="floor2" type="MeshInstance3D" parent="SubViewport/world/environment/floors"]
+transform = Transform3D(0.678557, -0.143379, -0.720419, 0, 0.980765, -0.195193, 0.734548, 0.13245, 0.665505, -18.0892, -1.50766, -73.967)
+mesh = SubResource("PlaneMesh_vbm3l")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/world/environment/floors/floor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/world/environment/floors/floor2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vbjd7")
