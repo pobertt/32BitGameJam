@@ -1,6 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=12 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Shader" path="res://world/shaders/stylizedwater.gdshader" id="1_5suio"]
+[ext_resource type="PackedScene" uid="uid://dxmdmoueib4x" path="res://assets/scenes/malevillager.tscn" id="2_03plx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_vstev"]
+sky_material = SubResource("ProceduralSkyMaterial_rjpoh")
+
+[sub_resource type="Environment" id="Environment_coafa"]
+background_mode = 2
+sky = SubResource("Sky_vstev")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0fdt3"]
 load_path = "res://.godot/imported/Mat_Cardboard_Neutral_01-128x128.png-38138f11bf0df6a108db638bc37dc43b.s3tc.ctex"
@@ -33,6 +47,13 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [node name="world" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_coafa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
 [node name="ocean" type="Node3D" parent="."]
 
 [node name="windwaker" type="MeshInstance3D" parent="ocean"]
@@ -47,3 +68,6 @@ shape = SubResource("ConcavePolygonShape3D_qss42")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522108, -0.113266, 4.69911)
 mesh = SubResource("BoxMesh_rryqk")
+
+[node name="MaleVillager" parent="." instance=ExtResource("2_03plx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38639, 0.0413208, -0.0787592)
