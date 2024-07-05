@@ -1,14 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=14 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsaa1"]
-shader = ExtResource("1_aqwbn")
-shader_parameter/enabled = true
-shader_parameter/dithering = true
-shader_parameter/colors = 12
-shader_parameter/dither_size = 2
+[ext_resource type="PackedScene" uid="uid://co4ho06w4eboa" path="res://player.tscn" id="3_dswo8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -22,6 +16,13 @@ background_mode = 2
 sky = SubResource("Sky_vstev")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsaa1"]
+shader = ExtResource("1_aqwbn")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hweut"]
 render_priority = 0
@@ -37,63 +38,78 @@ material = SubResource("ShaderMaterial_hweut")
 size = Vector2(200, 200)
 subdivide_width = 16
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_m7sny"]
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fr6eu"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_vbm3l"]
 size = Vector2(50, 50)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vbjd7"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
 
-[node name="SubViewportContainer" type="SubViewportContainer"]
+[node name="world" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_coafa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_hsaa1")
 offset_top = -4.0
 offset_right = 1920.0
 offset_bottom = 1078.0
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1920, 1082)
 render_target_update_mode = 4
 
-[node name="world" type="Node3D" parent="SubViewport"]
+[node name="environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/world"]
-environment = SubResource("Environment_coafa")
+[node name="ocean" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/world"]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="SubViewport/world"]
-transform = Transform3D(1, 0, 0, 0, 0.933749, 0.357928, 0, -0.357928, 0.933749, -0.220991, 2.99175, 6.4023)
-
-[node name="environment" type="Node3D" parent="SubViewport/world"]
-
-[node name="ocean" type="Node3D" parent="SubViewport/world/environment"]
-
-[node name="mesh" type="MeshInstance3D" parent="SubViewport/world/environment/ocean"]
+[node name="mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/ocean"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
 mesh = SubResource("PlaneMesh_3b31k")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../../..")
 
-[node name="floors" type="Node3D" parent="SubViewport/world/environment"]
+[node name="floors" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
 
-[node name="floor1" type="MeshInstance3D" parent="SubViewport/world/environment/floors"]
-transform = Transform3D(1, 0, 0, 0, 0.980765, -0.195193, 0, 0.195193, 0.980765, -24.104, -1.50766, -64.1192)
+[node name="floor1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.56712, 0)
+mesh = SubResource("PlaneMesh_m7sny")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_fr6eu")
+
+[node name="floor2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
+transform = Transform3D(0.678557, -0.143379, -0.720419, 0, 0.980765, -0.195193, 0.734548, 0.13245, 0.665505, -18.0892, -1.50766, -73.967)
 mesh = SubResource("PlaneMesh_vbm3l")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../../../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/world/environment/floors/floor1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/environment/floors/floor2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/world/environment/floors/floor1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vbjd7")
 
-[node name="floor2" type="MeshInstance3D" parent="SubViewport/world/environment/floors"]
-transform = Transform3D(0.678557, -0.143379, -0.720419, 0, 0.980765, -0.195193, 0.734548, 0.13245, 0.665505, -18.0892, -1.50766, -73.967)
+[node name="floor3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
+transform = Transform3D(1, 0, 0, 0, 0.980765, -0.195193, 0, 0.195193, 0.980765, -24.104, -1.50766, -64.1192)
 mesh = SubResource("PlaneMesh_vbm3l")
 skeleton = NodePath("../../../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/world/environment/floors/floor2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/environment/floors/floor3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/world/environment/floors/floor2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vbjd7")
+
+[node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_dswo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7172, -1.41119, -64.6039)
