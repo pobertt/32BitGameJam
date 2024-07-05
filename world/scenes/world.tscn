@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-[ext_resource type="PackedScene" uid="uid://co4ho06w4eboa" path="res://player.tscn" id="3_dswo8"]
+[ext_resource type="PackedScene" uid="uid://ueufvl501ft" path="res://player/scenes/player.tscn" id="3_7n35g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -111,5 +111,5 @@ skeleton = NodePath("../../../../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vbjd7")
 
-[node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_dswo8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7172, -1.41119, -64.6039)
+[node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7n35g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4328, 13.7747, -78.7258)
