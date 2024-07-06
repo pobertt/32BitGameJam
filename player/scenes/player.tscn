@@ -1,34 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://ueufvl501ft"]
+[gd_scene load_steps=4 format=3 uid="uid://bnfv0o3l8dd2o"]
 
-[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_sb2py"]
-[ext_resource type="PackedScene" uid="uid://dmrsna6g07jna" path="res://player/scenes/godot_chan_stealth.tscn" id="2_343gh"]
-[ext_resource type="Script" path="res://player/scripts/camera.gd" id="3_fv7ta"]
+[ext_resource type="PackedScene" uid="uid://dthv8s6m2o2lq" path="res://player/scenes/godot_chan_4.tscn" id="1_hnug5"]
+[ext_resource type="Script" path="res://player/scenes/cameracontroller.gd" id="2_tvb32"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q567u"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6c2mw"]
 
 [node name="player" type="CharacterBody3D"]
-script = ExtResource("1_sb2py")
-
-[node name="mesh" type="Node3D" parent="."]
-
-[node name="Godot_Chan_Stealth" parent="mesh" instance=ExtResource("2_343gh")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.868609, 0)
-shape = SubResource("CapsuleShape3D_q567u")
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 1.47167, 0)
+shape = SubResource("CapsuleShape3D_6c2mw")
+
+[node name="meshRoot" type="Node3D" parent="."]
+
+[node name="godot_chan_4" parent="meshRoot" instance=ExtResource("1_hnug5")]
 
 [node name="camRoot" type="Node3D" parent="."]
-script = ExtResource("3_fv7ta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43505, 0)
+script = ExtResource("2_tvb32")
 
-[node name="horizontal" type="Node3D" parent="camRoot"]
+[node name="camYaw" type="Node3D" parent="camRoot"]
 
-[node name="vertical" type="Node3D" parent="camRoot/horizontal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61204, 0)
+[node name="camPitch" type="Node3D" parent="camRoot/camYaw"]
 
-[node name="springArm" type="SpringArm3D" parent="camRoot/horizontal/vertical"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-spring_length = 2.0
-margin = 0.5
-
-[node name="Camera" type="Camera3D" parent="camRoot/horizontal/vertical/springArm"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="camRoot/camYaw/camPitch"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-[ext_resource type="PackedScene" uid="uid://ueufvl501ft" path="res://player/scenes/player.tscn" id="3_7n35g"]
+[ext_resource type="PackedScene" uid="uid://bnfv0o3l8dd2o" path="res://player/scenes/player.tscn" id="3_7n35g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -83,7 +83,7 @@ skeleton = NodePath("../../../../..")
 [node name="floors" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
 
 [node name="floor1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.56712, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212134, 103.81)
 mesh = SubResource("PlaneMesh_m7sny")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1"]
@@ -92,7 +92,7 @@ mesh = SubResource("PlaneMesh_m7sny")
 shape = SubResource("ConcavePolygonShape3D_fr6eu")
 
 [node name="floor2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
-transform = Transform3D(0.678557, -0.143379, -0.720419, 0, 0.980765, -0.195193, 0.734548, 0.13245, 0.665505, -18.0892, -1.50766, -73.967)
+transform = Transform3D(0.678557, -0.143379, -0.720419, 0, 0.980765, -0.195193, 0.734548, 0.13245, 0.665505, -18.0892, 1.84733, 29.8426)
 mesh = SubResource("PlaneMesh_vbm3l")
 skeleton = NodePath("../../../../../../..")
 
@@ -102,7 +102,7 @@ skeleton = NodePath("../../../../../../..")
 shape = SubResource("ConcavePolygonShape3D_vbjd7")
 
 [node name="floor3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
-transform = Transform3D(1, 0, 0, 0, 0.980765, -0.195193, 0, 0.195193, 0.980765, -24.104, -1.50766, -64.1192)
+transform = Transform3D(1, 0, 0, 0, 0.980765, -0.195193, 0, 0.195193, 0.980765, -24.104, 1.84733, 39.6904)
 mesh = SubResource("PlaneMesh_vbm3l")
 skeleton = NodePath("../../../../..")
 
@@ -112,4 +112,4 @@ skeleton = NodePath("../../../../..")
 shape = SubResource("ConcavePolygonShape3D_vbjd7")
 
 [node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7n35g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.4328, 13.7747, -78.7258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82735, 92.6809)
