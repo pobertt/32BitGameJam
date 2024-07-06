@@ -1,14 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnfv0o3l8dd2o"]
+[gd_scene load_steps=10 format=3 uid="uid://bnfv0o3l8dd2o"]
 
 [ext_resource type="PackedScene" uid="uid://dthv8s6m2o2lq" path="res://player/scenes/godot_chan_4.tscn" id="1_hnug5"]
-[ext_resource type="Script" path="res://player/scenes/cameracontroller.gd" id="2_tvb32"]
+[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_sb2py"]
+[ext_resource type="Resource" uid="uid://cbvt5jyy5e0iw" path="res://player/MovementStates/stand.tres" id="2_k5rnj"]
+[ext_resource type="Script" path="res://player/scripts/camera_controller.gd" id="2_scjs7"]
+[ext_resource type="Resource" uid="uid://012adtx2dq1a" path="res://player/MovementStates/walk.tres" id="3_163ly"]
+[ext_resource type="Resource" uid="uid://d0lcgudietkma" path="res://player/MovementStates/run.tres" id="4_wy7dx"]
+[ext_resource type="Resource" uid="uid://b15c2qn7a40fv" path="res://player/MovementStates/sprint.tres" id="5_ucuos"]
+[ext_resource type="Script" path="res://player/scenes/movement_controller.gd" id="6_tmaj6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6c2mw"]
 
 [node name="player" type="CharacterBody3D"]
+script = ExtResource("1_sb2py")
+movement_states = {
+"run": ExtResource("4_wy7dx"),
+"sprint": ExtResource("5_ucuos"),
+"stand": ExtResource("2_k5rnj"),
+"walk": ExtResource("3_163ly")
+}
+
+[node name="movementController" type="Node" parent="." node_paths=PackedStringArray("player", "mesh_root")]
+script = ExtResource("6_tmaj6")
+player = NodePath("..")
+mesh_root = NodePath("../meshRoot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 1.47167, 0)
+transform = Transform3D(1.43931, 0, 0, 0, 1.61952, 0, 0, 0, 1.20556, 0, 1.37823, 0)
 shape = SubResource("CapsuleShape3D_6c2mw")
 
 [node name="meshRoot" type="Node3D" parent="."]
@@ -17,11 +35,19 @@ shape = SubResource("CapsuleShape3D_6c2mw")
 
 [node name="camRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43505, 0)
-script = ExtResource("2_tvb32")
+script = ExtResource("2_scjs7")
 
 [node name="camYaw" type="Node3D" parent="camRoot"]
 
 [node name="camPitch" type="Node3D" parent="camRoot/camYaw"]
 
-[node name="Camera3D" type="Camera3D" parent="camRoot/camYaw/camPitch"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.5)
+[node name="SpringArm3D" type="SpringArm3D" parent="camRoot/camYaw/camPitch"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="camRoot/camYaw/camPitch/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000862551, 0, 3.51354)
+
+[connection signal="set_movement_direction" from="." to="movementController" method="_on_set_movement_direction"]
+[connection signal="set_movement_state" from="." to="movementController" method="_on_set_movement_state"]
+[connection signal="set_cam_rotation" from="camRoot" to="movementController" method="_on_set_cam_rotation"]

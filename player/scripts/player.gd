@@ -1,31 +1,34 @@
 extends CharacterBody3D
 
+signal set_movement_state(_movement_state : MovementState)
+signal set_movement_direction(_movement_direction : Vector3)
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+@export var movement_states : Dictionary
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var movement_direction : Vector3
 
+func _input(event):
+	if event.is_action("movement"):
+		movement_direction.x = Input.get_action_strength("left") - Input.get_action_strength("right")
+		movement_direction.z = Input.get_action_strength("up") - Input.get_action_strength("down")
+		
+		if is_movement_ongoing():
+			if Input.is_action_pressed("sprint"):
+				set_movement_state.emit(movement_states["sprint"])
+			else:
+				if Input.is_action_pressed("walk"):
+					set_movement_state.emit(movement_states["walk"])
+				else:
+					set_movement_state.emit(movement_states["run"])
+		else:
+			set_movement_state.emit(movement_states["stand"])
 
+func _ready():
+	set_movement_state.emit(movement_states["stand"])
+	
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+	if is_movement_ongoing():
+		set_movement_direction.emit(movement_direction)
+		
+func is_movement_ongoing() -> bool:
+	return abs(movement_direction.x) > 0 or abs(movement_direction.z) > 0
