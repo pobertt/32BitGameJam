@@ -27,7 +27,7 @@ shader_parameter/dither_size = 2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hweut"]
 render_priority = 0
 shader = ExtResource("1_gpkw7")
-shader_parameter/speed = Vector2(0.2, 0.2)
+shader_parameter/speed = Vector2(1, 1)
 shader_parameter/voronoi_scale = 90.0
 shader_parameter/noise_scale = 0.01
 shader_parameter/color = Color(0.01, 0.586667, 1, 1)
@@ -81,6 +81,7 @@ mesh = SubResource("PlaneMesh_3b31k")
 skeleton = NodePath("../../../../..")
 
 [node name="floors" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.34768, 0)
 
 [node name="floor1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212134, 103.81)
