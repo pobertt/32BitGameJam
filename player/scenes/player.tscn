@@ -43,11 +43,12 @@ script = ExtResource("2_scjs7")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="camRoot/camYaw/camPitch"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-spring_length = 3.0
+spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="camRoot/camYaw/camPitch/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000862551, 0, 3.51354)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000862376, 0, 5.51354)
 
 [connection signal="set_movement_direction" from="." to="movementController" method="_on_set_movement_direction"]
 [connection signal="set_movement_state" from="." to="movementController" method="_on_set_movement_state"]
+[connection signal="set_movement_state" from="." to="camRoot" method="_on_set_movement_state"]
 [connection signal="set_cam_rotation" from="camRoot" to="movementController" method="_on_set_cam_rotation"]
