@@ -30,7 +30,7 @@ func _input(event):
 func _ready():
 	set_movement_state.emit(movement_states["stand"])
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_movement_ongoing():
 		set_movement_direction.emit(movement_direction)
 		
