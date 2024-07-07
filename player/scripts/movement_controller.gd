@@ -40,3 +40,6 @@ func _on_set_movement_direction(_movement_direction : Vector3):
 	
 func _on_set_cam_rotation(_cam_rotation: float):
 	cam_rotation = _cam_rotation
+
+func _on_player_pressed_jump(jump_state):
+	pass # Replace with function body.
