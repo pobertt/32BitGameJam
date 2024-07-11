@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-[ext_resource type="PackedScene" uid="uid://bnfv0o3l8dd2o" path="res://player/scenes/player.tscn" id="3_7n35g"]
+[ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://assets/scenes/nissan_gtr.tscn" id="2_851xx"]
 [ext_resource type="Texture2D" uid="uid://c1o0wu2lhd3gi" path="res://assets/textures/Dirt_13-256x256.png" id="3_dp426"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
@@ -71,8 +71,8 @@ handle_input_locally = false
 size = Vector2i(1920, 1082)
 render_target_update_mode = 4
 
-[node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7n35g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.759392, -15.3561)
+[node name="Nissan GTR" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_851xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30971, 0)
 
 [node name="environment" type="Node3D" parent="."]
 

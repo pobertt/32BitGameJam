@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxmdmoueib4x"]
 
-[ext_resource type="PackedScene" uid="uid://dusn3ygswaywe" path="res://assets/PSX Villager Man/MaleVillager.glb" id="1_f30cy"]
-[ext_resource type="Texture2D" uid="uid://cj0anb6diafuv" path="res://assets/PSX Villager Man/MaleVillagerTexture.png" id="2_xr0vt"]
+[ext_resource type="PackedScene" uid="uid://dusn3ygswaywe" path="res://assets/models/PSX Villager Man/MaleVillager.glb" id="1_f30cy"]
+[ext_resource type="Texture2D" uid="uid://cj0anb6diafuv" path="res://assets/models/PSX Villager Man/MaleVillagerTexture.png" id="2_xr0vt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nng44"]
 albedo_texture = ExtResource("2_xr0vt")
