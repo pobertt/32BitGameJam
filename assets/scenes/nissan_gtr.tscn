@@ -475,6 +475,8 @@ shadow_mesh = SubResource("ArrayMesh_2m3wi")
 
 [node name="Nissan GTR" type="VehicleBody3D"]
 gravity_scale = 4.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.2, 1)
 script = ExtResource("1_j36kl")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -491,7 +493,7 @@ wheel_roll_influence = 0.01
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.1
 suspension_travel = 0.15
-suspension_stiffness = 80.0
+suspension_stiffness = 100.0
 
 [node name="Circle_003" type="MeshInstance3D" parent="BackLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.381946, 1.63113)
@@ -505,7 +507,7 @@ wheel_roll_influence = 0.01
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.1
 suspension_travel = 0.15
-suspension_stiffness = 80.0
+suspension_stiffness = 100.0
 
 [node name="Circle_002" type="MeshInstance3D" parent="BackRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.386056, 1.64118)
@@ -540,5 +542,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.359, -1.949)
 mesh = SubResource("ArrayMesh_xrv4k")
 skeleton = NodePath("")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="CenterOfMass" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-1, -1.51808e-08, 8.60946e-08, 0, 0.984808, 0.173648, -8.74228e-08, 0.173648, -0.984808, 0, 2, -5)
+current = true
+
+[node name="ReverseCamera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)

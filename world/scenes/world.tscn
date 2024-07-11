@@ -72,7 +72,7 @@ size = Vector2i(1920, 1082)
 render_target_update_mode = 4
 
 [node name="Nissan GTR" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_851xx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30971, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30971, 0)
 
 [node name="environment" type="Node3D" parent="."]
 
