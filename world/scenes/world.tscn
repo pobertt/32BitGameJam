@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-[ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://assets/scenes/nissan_gtr.tscn" id="2_851xx"]
 [ext_resource type="Texture2D" uid="uid://c1o0wu2lhd3gi" path="res://assets/textures/Dirt_13-256x256.png" id="3_dp426"]
+[ext_resource type="PackedScene" uid="uid://dgxihwbj7oh82" path="res://world/scenes/multiplayer_test.tscn" id="5_hamwh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -22,7 +22,7 @@ glow_enabled = true
 shader = ExtResource("1_aqwbn")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
-shader_parameter/colors = 12
+shader_parameter/colors = 6
 shader_parameter/dither_size = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hweut"]
@@ -36,7 +36,7 @@ shader_parameter/light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3b31k"]
 material = SubResource("ShaderMaterial_hweut")
-size = Vector2(400, 400)
+size = Vector2(800, 800)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0q8xa"]
 albedo_texture = ExtResource("3_dp426")
@@ -44,10 +44,10 @@ uv1_scale = Vector3(0.005, 0.005, 0.005)
 uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ixyrr"]
-size = Vector2(100, 100)
+size = Vector2(400, 400)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t66q2"]
-data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lrsih"]
+data = PackedVector3Array(200, 0, 200, -200, 0, 200, 200, 0, -200, -200, 0, 200, -200, 0, -200, 200, 0, -200)
 
 [node name="world" type="Node3D"]
 
@@ -71,8 +71,7 @@ handle_input_locally = false
 size = Vector2i(1920, 1082)
 render_target_update_mode = 4
 
-[node name="Nissan GTR" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_851xx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30971, 0)
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="environment" type="Node3D" parent="."]
 
@@ -94,4 +93,6 @@ mesh = SubResource("PlaneMesh_ixyrr")
 [node name="StaticBody3D" type="StaticBody3D" parent="environment/floors/floor1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/floors/floor1/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_t66q2")
+shape = SubResource("ConcavePolygonShape3D_lrsih")
+
+[node name="multiplayer_test" parent="." instance=ExtResource("5_hamwh")]

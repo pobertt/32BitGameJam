@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cyfmluj2pfhy0"]
+[gd_scene load_steps=24 format=3 uid="uid://cyfmluj2pfhy0"]
 
 [ext_resource type="Script" path="res://player/scripts/car.gd" id="1_j36kl"]
 
@@ -473,6 +473,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2m3wi")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jpm11"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Nissan GTR" type="VehicleBody3D"]
 gravity_scale = 4.0
 center_of_mass_mode = 1
@@ -493,7 +501,7 @@ wheel_roll_influence = 0.01
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.1
 suspension_travel = 0.15
-suspension_stiffness = 100.0
+suspension_stiffness = 90.0
 
 [node name="Circle_003" type="MeshInstance3D" parent="BackLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.381946, 1.63113)
@@ -507,7 +515,7 @@ wheel_roll_influence = 0.01
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.1
 suspension_travel = 0.15
-suspension_stiffness = 100.0
+suspension_stiffness = 90.0
 
 [node name="Circle_002" type="MeshInstance3D" parent="BackRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.386056, 1.64118)
@@ -521,7 +529,7 @@ wheel_roll_influence = 0.01
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.4
 suspension_travel = 0.15
-suspension_stiffness = 120.0
+suspension_stiffness = 110.0
 
 [node name="Circle_001" type="MeshInstance3D" parent="FrontRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.359, -1.94925)
@@ -535,7 +543,7 @@ wheel_roll_influence = 0.01
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.4
 suspension_travel = 0.15
-suspension_stiffness = 120.0
+suspension_stiffness = 110.0
 
 [node name="Circle" type="MeshInstance3D" parent="FrontLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.359, -1.949)
@@ -554,3 +562,7 @@ current = true
 
 [node name="ReverseCamera" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)
+current = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jpm11")

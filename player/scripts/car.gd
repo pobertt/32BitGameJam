@@ -9,6 +9,9 @@ const ENGINE_POWER = 300
 
 var look_at
 
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -16,15 +19,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2.5)
-	engine_force = Input.get_axis("down", "up") * ENGINE_POWER
-	camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
-	camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
-	look_at = look_at.lerp(global_position + linear_velocity, delta * 5.0)
-	camera_3d.look_at(look_at)
-	reverse_camera.look_at(look_at)
-	_check_camera_switch()
-	
+	if is_multiplayer_authority():
+		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2.5)
+		engine_force = Input.get_axis("down", "up") * ENGINE_POWER
+		camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
+		camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
+		look_at = look_at.lerp(global_position + linear_velocity, delta * 5.0)
+		camera_3d.look_at(look_at)
+		reverse_camera.look_at(look_at)
+		_check_camera_switch()
+		
 func _check_camera_switch():
 	if linear_velocity.dot(transform.basis.z) > 0:
 		camera_3d.current = true
