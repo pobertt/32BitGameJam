@@ -5,16 +5,15 @@ const ENGINE_POWER = 300
 
 var eDelta = 0
 
-@onready var camera_pivot = $CameraPivot
-@onready var camera_3d = $CameraPivot/Camera3D
-@onready var reverse_camera = $CameraPivot/ReverseCamera
+@onready var camera_pivot = $SubViewportContainer/SubViewport/CameraPivot
+@onready var camera_3d = $SubViewportContainer/SubViewport/CameraPivot/Camera3D
+@onready var reverse_camera = $SubViewportContainer/SubViewport/CameraPivot/ReverseCamera
 
 var look_at
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
-	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	look_at = global_position
 
@@ -22,6 +21,7 @@ func _ready():
 func _physics_process(delta):
 	eDelta = delta
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		camera_3d.current = true
 		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2.5)
 		engine_force = Input.get_axis("down", "up") * ENGINE_POWER
 		camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)

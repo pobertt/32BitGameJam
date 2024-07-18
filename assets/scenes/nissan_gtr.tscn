@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyfmluj2pfhy0"]
+[gd_scene load_steps=26 format=3 uid="uid://cyfmluj2pfhy0"]
 
 [ext_resource type="Script" path="res://player/scripts/car.gd" id="1_j36kl"]
+[ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_jbyir"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_561wb"]
 resource_name = "chasis"
@@ -481,6 +482,13 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0oo7t"]
+shader = ExtResource("1_jbyir")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 6
+shader_parameter/dither_size = 2
+
 [node name="Nissan GTR" type="VehicleBody3D"]
 gravity_scale = 4.0
 center_of_mass_mode = 1
@@ -553,16 +561,29 @@ skeleton = NodePath("")
 [node name="CenterOfMass" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1)
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." groups=["Player"]]
+replication_config = SubResource("SceneReplicationConfig_jpm11")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_0oo7t")
+offset_top = -4.0
+offset_right = 1920.0
+offset_bottom = 1078.0
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1082)
+render_target_update_mode = 4
+
+[node name="CameraPivot" type="Node3D" parent="SubViewportContainer/SubViewport"]
 top_level = true
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CameraPivot"]
 transform = Transform3D(-1, -1.51808e-08, 8.60946e-08, 0, 0.984808, 0.173648, -8.74228e-08, 0.173648, -0.984808, 0, 2, -5)
 current = true
 
-[node name="ReverseCamera" type="Camera3D" parent="CameraPivot"]
+[node name="ReverseCamera" type="Camera3D" parent="SubViewportContainer/SubViewport/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)
 current = true
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." groups=["Player"]]
-replication_config = SubResource("SceneReplicationConfig_jpm11")

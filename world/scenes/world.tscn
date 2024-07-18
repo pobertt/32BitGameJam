@@ -1,6 +1,5 @@
-[gd_scene load_steps=16 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=14 format=3 uid="uid://cf3fulblelx4m"]
 
-[ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Script" path="res://world/scenes/scene_manager.gd" id="1_evohd"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
 [ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://assets/scenes/nissan_gtr.tscn" id="2_7nplu"]
@@ -18,13 +17,6 @@ background_mode = 2
 sky = SubResource("Sky_vstev")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0kr3"]
-shader = ExtResource("1_aqwbn")
-shader_parameter/enabled = true
-shader_parameter/dithering = true
-shader_parameter/colors = 6
-shader_parameter/dither_size = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hweut"]
 render_priority = 0
@@ -63,49 +55,36 @@ environment = SubResource("Environment_coafa")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-material = SubResource("ShaderMaterial_g0kr3")
-offset_top = -4.0
-offset_right = 1920.0
-offset_bottom = 1078.0
-stretch = true
-metadata/_edit_use_anchors_ = true
+[node name="environment" type="Node3D" parent="."]
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(1920, 1082)
-render_target_update_mode = 4
+[node name="ocean" type="Node3D" parent="environment"]
 
-[node name="environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
-
-[node name="ocean" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
-
-[node name="mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/ocean"]
+[node name="mesh" type="MeshInstance3D" parent="environment/ocean"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
 mesh = SubResource("PlaneMesh_3b31k")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../..")
 
-[node name="floors" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
+[node name="floors" type="Node3D" parent="environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.255553, 0)
 
-[node name="floor1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
+[node name="floor1" type="MeshInstance3D" parent="environment/floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.404927, 0)
 material_override = SubResource("StandardMaterial3D_0q8xa")
 mesh = SubResource("PlaneMesh_ixyrr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="environment/floors/floor1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/floors/floor1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_lrsih")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment"]
 transform = Transform3D(3.01519, 0, 0, 0, 7.77999, 0, 0, 0, 2.5923, 0, 7.21769, 0)
 mesh = SubResource("CylinderMesh_kw85i")
 
-[node name="SpawnLocations" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="SpawnLocations" type="Node3D" parent="."]
 
-[node name="0" type="Node3D" parent="SubViewportContainer/SubViewport/SpawnLocations" groups=["PlayerSpawnPoint"]]
+[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
-[node name="1" type="Node3D" parent="SubViewportContainer/SubViewport/SpawnLocations" groups=["PlayerSpawnPoint"]]
+[node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
