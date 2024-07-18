@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=16 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
 [ext_resource type="Script" path="res://world/scenes/scene_manager.gd" id="1_evohd"]
@@ -50,6 +50,8 @@ size = Vector2(400, 400)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lrsih"]
 data = PackedVector3Array(200, 0, 200, -200, 0, 200, 200, 0, -200, -200, 0, 200, -200, 0, -200, 200, 0, -200)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_kw85i"]
+
 [node name="world" type="Node3D"]
 script = ExtResource("1_evohd")
 player_scene = ExtResource("2_7nplu")
@@ -95,6 +97,10 @@ mesh = SubResource("PlaneMesh_ixyrr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_lrsih")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment"]
+transform = Transform3D(3.01519, 0, 0, 0, 7.77999, 0, 0, 0, 2.5923, 0, 7.21769, 0)
+mesh = SubResource("CylinderMesh_kw85i")
 
 [node name="SpawnLocations" type="Node3D" parent="SubViewportContainer/SubViewport"]
 

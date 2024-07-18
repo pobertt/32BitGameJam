@@ -7,6 +7,7 @@ var peer = ENetMultiplayerPeer.new()
 
 @onready var host = $host
 @onready var join = $join
+@onready var startgame = $startgame
 
 func _ready():
 	multiplayer.peer_connected.connect(_peer_connected)
@@ -80,6 +81,7 @@ func _on_startgame_button_down():
 func _button_visibility(decision : bool):
 	host.visible = decision
 	join.visible = decision
+	startgame.visible = decision
 
 
 
