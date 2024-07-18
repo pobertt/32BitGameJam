@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=15 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_aqwbn"]
+[ext_resource type="Script" path="res://world/scenes/scene_manager.gd" id="1_evohd"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
+[ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://assets/scenes/nissan_gtr.tscn" id="2_7nplu"]
 [ext_resource type="Texture2D" uid="uid://c1o0wu2lhd3gi" path="res://assets/textures/Dirt_13-256x256.png" id="3_dp426"]
-[ext_resource type="PackedScene" uid="uid://dgxihwbj7oh82" path="res://world/scenes/multiplayer_test.tscn" id="5_hamwh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,6 +51,8 @@ size = Vector2(400, 400)
 data = PackedVector3Array(200, 0, 200, -200, 0, 200, 200, 0, -200, -200, 0, 200, -200, 0, -200, 200, 0, -200)
 
 [node name="world" type="Node3D"]
+script = ExtResource("1_evohd")
+player_scene = ExtResource("2_7nplu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_coafa")
@@ -71,26 +74,32 @@ handle_input_locally = false
 size = Vector2i(1920, 1082)
 render_target_update_mode = 4
 
-[node name="multiplayer_test" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_hamwh")]
+[node name="environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="environment" type="Node3D" parent="."]
+[node name="ocean" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
 
-[node name="ocean" type="Node3D" parent="environment"]
-
-[node name="mesh" type="MeshInstance3D" parent="environment/ocean"]
+[node name="mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/ocean"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
 mesh = SubResource("PlaneMesh_3b31k")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../../..")
 
-[node name="floors" type="Node3D" parent="environment"]
+[node name="floors" type="Node3D" parent="SubViewportContainer/SubViewport/environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.255553, 0)
 
-[node name="floor1" type="MeshInstance3D" parent="environment/floors"]
+[node name="floor1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/environment/floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.404927, 0)
 material_override = SubResource("StandardMaterial3D_0q8xa")
 mesh = SubResource("PlaneMesh_ixyrr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="environment/floors/floor1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/floors/floor1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/environment/floors/floor1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_lrsih")
+
+[node name="SpawnLocations" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="0" type="Node3D" parent="SubViewportContainer/SubViewport/SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="1" type="Node3D" parent="SubViewportContainer/SubViewport/SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
