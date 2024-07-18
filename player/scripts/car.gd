@@ -21,7 +21,6 @@ func _ready():
 func _physics_process(delta):
 	eDelta = delta
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		camera_3d.current = true
 		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2.5)
 		engine_force = Input.get_axis("down", "up") * ENGINE_POWER
 		camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
