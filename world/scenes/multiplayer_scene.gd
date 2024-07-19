@@ -1,7 +1,10 @@
 extends Control
 
 #127.0.0.1
-var address = "192.168.0.27"
+#var address = "192.168.0.27"
+#var ip_address :String
+
+var address = IP.get_local_addresses()
 @export var port = 8910
 var peer
 
@@ -10,6 +13,16 @@ var peer
 @onready var startgame = $startgame
 
 func _ready():
+	#if OS.has_feature("windows"):
+		#if OS.get_environment("COMPUTERNAME"):
+			#ip_address =  IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
+	#elif OS.has_feature("x11"):
+		#if OS.get_environment("HOSTNAME"):
+			#ip_address =  IP.resolve_hostname(str(OS.get_environment("HOSTNAME")),1)
+	#elif OS.has_feature("OSX"):
+		#if OS.get_environment("HOSTNAME"):
+			#ip_address =  IP.resolve_hostname(str(OS.get_environment("HOSTNAME")),1)
+		
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
 	multiplayer.connected_to_server.connect(_connected_to_server)

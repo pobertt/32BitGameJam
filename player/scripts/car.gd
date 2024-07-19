@@ -51,3 +51,4 @@ func sync_state(pos: Vector3, rot: Vector3, vel: Vector3):
 	global_position = pos
 	global_rotation = rot
 	linear_velocity = vel
+
