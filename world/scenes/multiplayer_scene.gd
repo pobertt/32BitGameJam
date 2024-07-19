@@ -1,8 +1,7 @@
 extends Control
 
-#"192.168.0.27"
 #127.0.0.1
-var address = IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
+var address = "192.168.0.27"
 @export var port = 8910
 var peer
 
@@ -59,7 +58,7 @@ func _host_game():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 4)
 	if error != OK:
-		print("cannot host: " + error)
+		print("cannot host: " + str(error))
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	
