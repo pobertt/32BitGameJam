@@ -3,7 +3,7 @@ extends Control
 #192.168.0.27
 @export var address = "127.0.0.1"
 @export var port = 8910
-var peer = ENetMultiplayerPeer.new()
+var peer
 
 @onready var host = $host
 @onready var join = $join
@@ -77,11 +77,6 @@ func _on_join_button_down():
 
 func _on_startgame_button_down():
 	_start_game.rpc()
-	
-func _button_visibility(decision : bool):
-	host.visible = decision
-	join.visible = decision
-	startgame.visible = decision
 
 
 
