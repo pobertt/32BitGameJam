@@ -1,7 +1,8 @@
 extends Control
 
-#192.168.0.27
-@export var address = "127.0.0.1"
+#"192.168.0.27"
+#127.0.0.1
+var address = IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
 @export var port = 8910
 var peer
 
