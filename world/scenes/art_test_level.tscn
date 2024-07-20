@@ -1,0 +1,180 @@
+[gd_scene load_steps=16 format=3 uid="uid://dhkfvr3crixyy"]
+
+[ext_resource type="Script" path="res://world/scripts/scene_manager.gd" id="1_agrs6"]
+[ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://player/scenes/nissan_gtr.tscn" id="2_w8tp1"]
+[ext_resource type="Material" uid="uid://5d6vhgrhnx1x" path="res://assets/materials/sand_01_triplanar.tres" id="3_opkmq"]
+[ext_resource type="Shader" path="res://assets/shaders/psx_ocean.gdshader" id="4_nuuhh"]
+[ext_resource type="Texture2D" uid="uid://dljsru54knecy" path="res://assets/textures/clear+sea+water-512x512.jpg" id="5_kwwi3"]
+[ext_resource type="ArrayMesh" uid="uid://kcc5aw2dbh1e" path="res://assets/models/trees/palm/sm_palm_01.res" id="6_l5300"]
+[ext_resource type="ArrayMesh" uid="uid://cosatltjriy1g" path="res://assets/models/trees/palm/sm_palm_02.res" id="7_yvqhr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_toqk1"]
+sky_top_color = Color(0.294, 0.7126, 0.84, 1)
+sky_horizon_color = Color(0.37, 0.916, 1, 1)
+ground_bottom_color = Color(0, 0.206718, 0.191619, 1)
+ground_horizon_color = Color(0.1584, 0.77176, 0.88, 1)
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_rbke2"]
+sky_material = SubResource("ProceduralSkyMaterial_toqk1")
+
+[sub_resource type="Environment" id="Environment_ir6mk"]
+background_mode = 2
+sky = SubResource("Sky_rbke2")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_be5p7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_otmf4"]
+seamless = true
+noise = SubResource("FastNoiseLite_be5p7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4n14"]
+render_priority = 0
+shader = ExtResource("4_nuuhh")
+shader_parameter/albedo = Color(0.0679648, 0.49017, 0.515722, 1)
+shader_parameter/scroll_speed1 = Vector2(0.05, 0)
+shader_parameter/scroll_speed2 = Vector2(-0.03, 0)
+shader_parameter/blend_factor = 0.5
+shader_parameter/scale1 = Vector2(20, 20)
+shader_parameter/scale2 = Vector2(20, 20)
+shader_parameter/wave_strength = 0.255
+shader_parameter/wave_scale = 0.02
+shader_parameter/pixelation_level = 64
+shader_parameter/water_texture1 = ExtResource("5_kwwi3")
+shader_parameter/water_texture2 = ExtResource("5_kwwi3")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_otmf4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3ovyg"]
+material = SubResource("ShaderMaterial_y4n14")
+size = Vector2(1000, 1000)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h0g7j"]
+data = PackedVector3Array(0, 7.6286, -0.6442, 0.801, 15.2419, -0.2603, 0, 15.2419, -0.8423, 0, 7.6286, -0.6442, 1.0479, 7.6286, 0.1172, 0.801, 15.2419, -0.2603, 1.0479, 7.6286, 0.1172, 0.495, 15.2419, 0.6814, 0.801, 15.2419, -0.2603, 1.0479, 7.6286, 0.1172, 0.6476, 7.6286, 1.3491, 0.495, 15.2419, 0.6814, 0.6476, 7.6286, 1.3491, -0.4951, 15.2419, 0.6814, 0.495, 15.2419, 0.6814, 0.6476, 7.6286, 1.3491, -0.6476, 7.6286, 1.3491, -0.4951, 15.2419, 0.6814, -0.6476, 7.6286, 1.3491, -0.8011, 15.2419, -0.2603, -0.4951, 15.2419, 0.6814, -0.6476, 7.6286, 1.3491, -1.0479, 7.6286, 0.1172, -0.8011, 15.2419, -0.2603, -1.0479, 7.6286, 0.1172, 0, 15.2419, -0.8423, -0.8011, 15.2419, -0.2603, -1.0479, 7.6286, 0.1172, 0, 7.6286, -0.6442, 0, 15.2419, -0.8423, -1.2948, -1, -0.4207, 1.2948, -1, -0.4207, 0, -1, -1.3614, 1.2948, -1, -0.4207, -0.8002, -1, 1.1013, 0.8002, -1, 1.1013, 1.2948, -1, -0.4207, -1.2948, -1, -0.4207, -0.8002, -1, 1.1013, -1.2948, -1, -0.4207, 0, 7.6286, -0.6442, -1.0479, 7.6286, 0.1172, -1.2948, -1, -0.4207, 0, -1, -1.3614, 0, 7.6286, -0.6442, -0.8002, -1, 1.1013, -1.0479, 7.6286, 0.1172, -0.6476, 7.6286, 1.3491, -0.8002, -1, 1.1013, -1.2948, -1, -0.4207, -1.0479, 7.6286, 0.1172, 0.8002, -1, 1.1013, -0.6476, 7.6286, 1.3491, 0.6476, 7.6286, 1.3491, 0.8002, -1, 1.1013, -0.8002, -1, 1.1013, -0.6476, 7.6286, 1.3491, 1.2948, -1, -0.4207, 0.6476, 7.6286, 1.3491, 1.0479, 7.6286, 0.1172, 1.2948, -1, -0.4207, 0.8002, -1, 1.1013, 0.6476, 7.6286, 1.3491, 0, -1, -1.3614, 1.0479, 7.6286, 0.1172, 0, 7.6286, -0.6442, 0, -1, -1.3614, 1.2948, -1, -0.4207, 1.0479, 7.6286, 0.1172, -0.8011, 15.2419, -0.2603, -0.6983, 15.6731, 0.9611, -0.4951, 15.2419, 0.6814, -0.8011, 15.2419, -0.2603, -1.1298, 15.6731, -0.3671, -0.6983, 15.6731, 0.9611, 0, 15.6731, -1.188, -1.1298, 17.6876, -0.3671, -1.1298, 15.6731, -0.3671, 0, 15.6731, -1.188, 0, 17.6876, -1.188, -1.1298, 17.6876, -0.3671, 0.4951, 15.2419, 0.6814, 1.1298, 15.6731, -0.3671, 0.801, 15.2419, -0.2603, 0.4951, 15.2419, 0.6814, 0.6983, 15.6731, 0.9611, 1.1298, 15.6731, -0.3671, 0, 15.2419, -0.8423, -1.1298, 15.6731, -0.3671, -0.8011, 15.2419, -0.2603, 0, 15.2419, -0.8423, 0, 15.6731, -1.188, -1.1298, 15.6731, -0.3671, 0.801, 15.2419, -0.2603, 0, 15.6731, -1.188, 0, 15.2419, -0.8423, 0.801, 15.2419, -0.2603, 1.1298, 15.6731, -0.3671, 0, 15.6731, -1.188, -0.4951, 15.2419, 0.6814, 0.6983, 15.6731, 0.9611, 0.4951, 15.2419, 0.6814, -0.4951, 15.2419, 0.6814, -0.6983, 15.6731, 0.9611, 0.6983, 15.6731, 0.9611, -1.1298, 17.6876, -0.3671, -0.3274, 18.297, 0.4506, -0.6983, 17.6876, 0.9611, -1.1298, 17.6876, -0.3671, -0.5297, 18.297, -0.1721, -0.3274, 18.297, 0.4506, -0.6983, 15.6731, 0.9611, 0.6983, 17.6876, 0.9611, 0.6983, 15.6731, 0.9611, -0.6983, 15.6731, 0.9611, -0.6983, 17.6876, 0.9611, 0.6983, 17.6876, 0.9611, 1.1298, 15.6731, -0.3671, 0, 17.6876, -1.188, 0, 15.6731, -1.188, 1.1298, 15.6731, -0.3671, 1.1298, 17.6876, -0.3671, 0, 17.6876, -1.188, -1.1298, 15.6731, -0.3671, -0.6983, 17.6876, 0.9611, -0.6983, 15.6731, 0.9611, -1.1298, 15.6731, -0.3671, -1.1298, 17.6876, -0.3671, -0.6983, 17.6876, 0.9611, 0.6983, 15.6731, 0.9611, 1.1298, 17.6876, -0.3671, 1.1298, 15.6731, -0.3671, 0.6983, 15.6731, 0.9611, 0.6983, 17.6876, 0.9611, 1.1298, 17.6876, -0.3671, 0.3274, 18.297, 0.4506, 0, 18.297, -0.557, 0.5297, 18.297, -0.1721, 0, 18.297, -0.557, -0.3274, 18.297, 0.4506, -0.5297, 18.297, -0.1721, 0, 18.297, -0.557, 0.3274, 18.297, 0.4506, -0.3274, 18.297, 0.4506, 0.6983, 17.6876, 0.9611, 0.5297, 18.297, -0.1721, 1.1298, 17.6876, -0.3671, 0.6983, 17.6876, 0.9611, 0.3274, 18.297, 0.4506, 0.5297, 18.297, -0.1721, 0, 17.6876, -1.188, -0.5297, 18.297, -0.1721, -1.1298, 17.6876, -0.3671, 0, 17.6876, -1.188, 0, 18.297, -0.557, -0.5297, 18.297, -0.1721, -0.6983, 17.6876, 0.9611, 0.3274, 18.297, 0.4506, 0.6983, 17.6876, 0.9611, -0.6983, 17.6876, 0.9611, -0.3274, 18.297, 0.4506, 0.3274, 18.297, 0.4506, 1.1298, 17.6876, -0.3671, 0, 18.297, -0.557, 0, 17.6876, -1.188, 1.1298, 17.6876, -0.3671, 0.5297, 18.297, -0.1721, 0, 18.297, -0.557, 5.6895, 12.3197, 6.5523, 4.5551, 19.3056, 0.2549, 10.9026, 14.0718, 0.2871, -1.5715, 17.8963, 0.233, 5.7278, 12.1376, -5.9709, 4.5551, 19.3056, 0.2549, 5.7278, 12.1376, -5.9709, 10.9026, 14.0718, 0.2871, 4.5551, 19.3056, 0.2549, 4.5551, 19.3056, 0.2549, 5.6895, 12.3197, 6.5523, -1.5715, 17.8963, 0.233, 8.3711, 12.3197, -0.6474, 2.5325, 19.3056, -3.2653, 6.1413, 14.0718, -8.4868, -0.9439, 17.8963, 1.7799, -1.9454, 12.1376, -7.7468, 2.5325, 19.3056, -3.2653, -1.9454, 12.1376, -7.7468, 6.1413, 14.0718, -8.4868, 2.5325, 19.3056, -3.2653, 2.5325, 19.3056, -3.2653, 8.3711, 12.3197, -0.6474, -0.9439, 17.8963, 1.7799, 3.2907, 12.3197, -7.387, -1.8955, 19.3056, -3.6392, -4.6131, 14.0718, -9.3753, 0.7355, 17.8963, 1.8937, -8.0156, 12.1376, -2.0024, -1.8955, 19.3056, -3.6392, -8.0156, 12.1376, -2.0024, -4.6131, 14.0718, -9.3753, -1.8955, 19.3056, -3.6392, -1.8955, 19.3056, -3.6392, 3.2907, 12.3197, -7.387, 0.7355, 17.8963, 1.8937, -5.8376, 12.3197, -5.7977, -4.3811, 19.3056, 0.4332, -10.7213, 14.0718, 0.7273, 1.739, 17.8963, 0.1405, -5.2321, 12.1376, 6.7111, -4.3811, 19.3056, 0.4332, -5.2321, 12.1376, 6.7111, -10.7213, 14.0718, 0.7273, -4.3811, 19.3056, 0.4332, -4.3811, 19.3056, 0.4332, -5.8376, 12.3197, -5.7977, 1.739, 17.8963, 0.1405, -8.0872, 12.3197, 1.8773, -2.0503, 19.3056, 3.9989, -5.211, 14.0718, 9.5033, 0.9929, 17.8963, -1.3188, 2.7856, 12.1376, 8.0912, -2.0503, 19.3056, 3.9989, 2.7856, 12.1376, 8.0912, -5.211, 14.0718, 9.5033, -2.0503, 19.3056, 3.9989, -2.0503, 19.3056, 3.9989, -8.0872, 12.3197, 1.8773, 0.9929, 17.8963, -1.3188, -1.7744, 12.3197, 8.0183, 2.5368, 19.3056, 3.2903, 6.3689, 14.0718, 8.3499, -1.1693, 17.8963, -1.5888, 8.1933, 12.1376, 0.4372, 2.5368, 19.3056, 3.2903, 8.1933, 12.1376, 0.4372, 6.3689, 14.0718, 8.3499, 2.5368, 19.3056, 3.2903, 2.5368, 19.3056, 3.2903, -1.7744, 12.3197, 8.0183, -1.1693, 17.8963, -1.5888)
+
+[node name="art_test_level" type="Node3D"]
+script = ExtResource("1_agrs6")
+player_scene = ExtResource("2_w8tp1")
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="SpawnLocations" type="Node3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96325, 0)
+
+[node name="0" type="Node3D" parent="stage/SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 20)
+
+[node name="1" type="Node3D" parent="stage/SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="2" type="Node3D" parent="stage/SpawnLocations" groups=["PlayerSpawnPoint"]]
+
+[node name="3" type="Node3D" parent="stage/SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_ir6mk")
+
+[node name="block" type="Node3D" parent="env"]
+
+[node name="land" type="CSGBox3D" parent="env/block"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.997986, 0, 0)
+use_collision = true
+collision_mask = 0
+size = Vector3(87.3506, 1, 100)
+material = ExtResource("3_opkmq")
+
+[node name="sea" type="MeshInstance3D" parent="env/block"]
+mesh = SubResource("PlaneMesh_3ovyg")
+
+[node name="props" type="Node3D" parent="env"]
+
+[node name="palm_01" type="StaticBody3D" parent="env/props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25303, 0.500461, 4.83882)
+collision_mask = 0
+
+[node name="palm_01_mesh" type="MeshInstance3D" parent="env/props/palm_01"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+mesh = ExtResource("6_l5300")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/props/palm_01"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0g7j")
+
+[node name="palm_02" type="StaticBody3D" parent="env/props"]
+transform = Transform3D(-0.522312, 0.094781, 0.736694, 0.0508135, 0.903053, -0.0801577, -0.741026, -0.00488231, -0.524755, -4.8098, 0.128016, 17.5999)
+collision_mask = 0
+
+[node name="palm_01_mesh" type="MeshInstance3D" parent="env/props/palm_02"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+mesh = ExtResource("6_l5300")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/props/palm_02"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0g7j")
+
+[node name="palm_04" type="StaticBody3D" parent="env/props"]
+transform = Transform3D(0.769094, -0.000429365, 0.482707, 0.0508136, 0.903053, -0.0801577, -0.480025, 0.0949057, 0.764906, 14.9921, 0.524692, 21.1046)
+collision_mask = 0
+
+[node name="palm_01_mesh" type="MeshInstance3D" parent="env/props/palm_04"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+mesh = ExtResource("6_l5300")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/props/palm_04"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0g7j")
+
+[node name="palm_03" type="StaticBody3D" parent="env/props"]
+transform = Transform3D(0.309925, -0.157022, 1.22042, 0.0405825, 1.25916, 0.1517, -1.22981, 0.00197983, 0.312564, 10.6646, 0.500461, 33.6072)
+collision_mask = 0
+
+[node name="palm_01_mesh" type="MeshInstance3D" parent="env/props/palm_03"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+mesh = ExtResource("6_l5300")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/props/palm_03"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0g7j")
+
+[node name="palm_crooked_01" type="StaticBody3D" parent="env/props"]
+transform = Transform3D(0.891734, 0, -0.452559, 0, 1, 0, 0.452559, 0, 0.891734, 5.70442, 0.500461, 11.2999)
+collision_mask = 0
+
+[node name="palm_02_mesh" type="MeshInstance3D" parent="env/props/palm_crooked_01"]
+transform = Transform3D(-1.17338e-08, 0, 0.268439, 0, 0.268439, 0, -0.268439, 0, -1.17338e-08, 0, 0, 0)
+mesh = ExtResource("7_yvqhr")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/props/palm_crooked_01"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0g7j")
+
+[node name="palm_crooked_02" type="StaticBody3D" parent="env/props"]
+transform = Transform3D(-1.14438, -0.0657659, 0.486036, -0.0597753, 1.24332, 0.0274919, -0.486809, 0.00193424, -1.14594, -2.4117, 0.500461, 32.4841)
+collision_mask = 0
+
+[node name="palm_02_mesh" type="MeshInstance3D" parent="env/props/palm_crooked_02"]
+transform = Transform3D(-1.17338e-08, 0, 0.268439, 0, 0.268439, 0, -0.268439, 0, -1.17338e-08, 0, 0, 0)
+mesh = ExtResource("7_yvqhr")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/props/palm_crooked_02"]
+transform = Transform3D(0.268439, 0, 0, 0, 0.268439, 0, 0, 0, 0.268439, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h0g7j")
+
+[node name="Nissan GTR" parent="." instance=ExtResource("2_w8tp1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44806, 0)

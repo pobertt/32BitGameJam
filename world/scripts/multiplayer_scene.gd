@@ -8,9 +8,11 @@ var address = "0"
 @export var port = 8910
 var peer
 
-@onready var host = $host
-@onready var join = $join
-@onready var startgame = $startgame
+@onready var host = $HBoxContainer/host
+@onready var join = $HBoxContainer/join
+@onready var startgame = $HBoxContainer/startgame
+
+var game_scene = preload("res://world/scenes/art_test_level.tscn")
 
 func _ready():
 	#if OS.has_feature("windows"):
@@ -69,7 +71,7 @@ func _set_IP(newAddress):
 
 @rpc("any_peer","call_local")
 func _start_game():
-	var scene = load("res://world/scenes/world.tscn").instantiate()
+	var scene = game_scene.instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 	

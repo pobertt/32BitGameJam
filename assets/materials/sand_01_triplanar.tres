@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://5d6vhgrhnx1x"]
+
+[ext_resource type="Texture2D" uid="uid://0mmytptsb1yv" path="res://assets/textures/sandimg.png" id="1_wy4xo"]
+
+[resource]
+albedo_color = Color(0.99, 0.99, 0.6831, 1)
+albedo_texture = ExtResource("1_wy4xo")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
