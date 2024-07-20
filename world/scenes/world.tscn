@@ -302,7 +302,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.76171, -0.149374, 1.69621)
 
 [node name="ocean" type="Node3D" parent="environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.5322, 0)
-visible = false
 
 [node name="mesh" type="MeshInstance3D" parent="environment/ocean"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
