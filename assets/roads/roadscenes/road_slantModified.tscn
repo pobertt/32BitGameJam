@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjwxersjshemy"]
 
-[ext_resource type="PackedScene" uid="uid://dfm76mfn12gvh" path="res://assets/roads/roadscenes/slant/road_slant.tscn" id="1_48giq"]
+[ext_resource type="PackedScene" uid="uid://cyiu1ete8bddg" path="res://assets/roads/roadscenes/slant/road_slant_flat.tscn" id="2_kujcr"]
 [ext_resource type="PackedScene" uid="uid://dy8x3b3chlgex" path="res://assets/roads/roadscenes/slant/road_slant_barrier.tscn" id="2_tjrrg"]
 
 [node name="RoadSlant" type="Node3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="road_slant" parent="." instance=ExtResource("1_48giq")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -1.19209e-07, -11.2394)
-
 [node name="road_slantBarrier" parent="." instance=ExtResource("2_tjrrg")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -1.19209e-07, -11.2394)
+
+[node name="road_slantFlat" parent="." instance=ExtResource("2_kujcr")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, -11.239)
