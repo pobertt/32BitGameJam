@@ -1,16 +1,17 @@
 [gd_scene load_steps=26 format=3 uid="uid://bnfv0o3l8dd2o"]
 
-[ext_resource type="PackedScene" uid="uid://dthv8s6m2o2lq" path="res://player/scenes/godot_chan_4.tscn" id="1_hnug5"]
-[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_sb2py"]
-[ext_resource type="Resource" uid="uid://ph2kb537jgyc" path="res://player/JumpStates/ground_jump.tres" id="2_hqiby"]
-[ext_resource type="Resource" uid="uid://cbvt5jyy5e0iw" path="res://player/MovementStates/stand.tres" id="2_k5rnj"]
-[ext_resource type="Script" path="res://player/scripts/camera_controller.gd" id="2_scjs7"]
-[ext_resource type="Resource" uid="uid://ba7tkc0yylp2x" path="res://player/JumpStates/air_jump.tres" id="3_3hfe5"]
-[ext_resource type="Resource" uid="uid://012adtx2dq1a" path="res://player/MovementStates/walk.tres" id="3_163ly"]
-[ext_resource type="Resource" uid="uid://d0lcgudietkma" path="res://player/MovementStates/run.tres" id="4_wy7dx"]
-[ext_resource type="Resource" uid="uid://b15c2qn7a40fv" path="res://player/MovementStates/sprint.tres" id="5_ucuos"]
-[ext_resource type="Script" path="res://player/scripts/movement_controller.gd" id="6_kogqw"]
-[ext_resource type="Script" path="res://player/scripts/animation_controller.gd" id="7_vyge6"]
+[ext_resource type="PackedScene" uid="uid://dthv8s6m2o2lq" path="res://player/old/scenes/godot_chan_4.tscn" id="1_hnug5"]
+[ext_resource type="Script" path="res://player/old/scripts/player.gd" id="1_sb2py"]
+[ext_resource type="Resource" uid="uid://ph2kb537jgyc" path="res://player/old/JumpStates/ground_jump.tres" id="2_hqiby"]
+[ext_resource type="Resource" uid="uid://cbvt5jyy5e0iw" path="res://player/old/MovementStates/stand.tres" id="2_k5rnj"]
+[ext_resource type="Script" path="res://player/old/scripts/camera_controller.gd" id="2_scjs7"]
+[ext_resource type="Resource" uid="uid://ba7tkc0yylp2x" path="res://player/old/JumpStates/air_jump.tres" id="3_3hfe5"]
+[ext_resource type="Resource" uid="uid://012adtx2dq1a" path="res://player/old/MovementStates/walk.tres" id="3_163ly"]
+[ext_resource type="Resource" uid="uid://d0lcgudietkma" path="res://player/old/MovementStates/run.tres" id="4_wy7dx"]
+[ext_resource type="Resource" uid="uid://b15c2qn7a40fv" path="res://player/old/MovementStates/sprint.tres" id="5_ucuos"]
+[ext_resource type="Script" path="res://player/old/scripts/movement_controller.gd" id="6_kogqw"]
+[ext_resource type="Script" path="res://player/old/scripts/animation_controller.gd" id="7_vyge6"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6c2mw"]
 

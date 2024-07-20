@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world/scenes/scene_manager.gd" id="1_evohd"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
-[ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://assets/scenes/nissan_gtr.tscn" id="2_7nplu"]
+[ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://player/scenes/nissan_gtr.tscn" id="2_7nplu"]
 [ext_resource type="Texture2D" uid="uid://c1o0wu2lhd3gi" path="res://assets/textures/Dirt_13-256x256.png" id="3_dp426"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
@@ -84,10 +84,12 @@ mesh = SubResource("CylinderMesh_kw85i")
 [node name="SpawnLocations" type="Node3D" parent="."]
 
 [node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 20)
 
 [node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="2" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.7704, 0, 29.1806)
+
+[node name="3" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)

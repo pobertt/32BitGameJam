@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="JumpState" load_steps=2 format=3 uid="uid://ba7tkc0yylp2x"]
 
-[ext_resource type="Script" path="res://player/scripts/jump_state.gd" id="1_ldif6"]
+[ext_resource type="Script" path="res://player/old/scripts/jump_state.gd" id="1_ldif6"]
+
 
 [resource]
 script = ExtResource("1_ldif6")

@@ -89,7 +89,7 @@ func _on_host_button_down():
 	_send_player_information($NameText.text, multiplayer.get_unique_id())
 	
 func _on_join_button_down():
-	_set_IP($AddressText.text)
+	_set_IP($AddressText.text) 
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(address, port)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)

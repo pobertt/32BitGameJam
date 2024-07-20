@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca6pswluaergg"
-path.s3tc="res://.godot/imported/godot_chan_4_anime_eye1.png-4e802920c2d67056299f40d6e8e881c1.s3tc.ctex"
+uid="uid://dv3mvutd0ikop"
+path.s3tc="res://.godot/imported/godot_chan_4_face.png-783b6eab092600c3020a831bd4e0e045.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "530f911f928e93d6878561baa8b1ddb0"
+"md5": "5acef906f1ed5022cc36ae0edba2bdd3"
 }
 
 [deps]
 
-source_file="res://player/assets/godot_chan_4_anime_eye1.png"
-dest_files=["res://.godot/imported/godot_chan_4_anime_eye1.png-4e802920c2d67056299f40d6e8e881c1.s3tc.ctex"]
+source_file="res://player/old/assets/godot_chan_4_face.png"
+dest_files=["res://.godot/imported/godot_chan_4_face.png-783b6eab092600c3020a831bd4e0e045.s3tc.ctex"]
 
 [params]
 

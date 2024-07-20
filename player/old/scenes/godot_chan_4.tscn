@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dthv8s6m2o2lq"]
 
-[ext_resource type="PackedScene" uid="uid://wfrcvlo41mcs" path="res://player/assets/godot_chan_4.glb" id="1_bniej"]
+[ext_resource type="PackedScene" uid="uid://wfrcvlo41mcs" path="res://player/old/assets/godot_chan_4.glb" id="1_bniej"]
 
 [node name="godot_chan_4" instance=ExtResource("1_bniej")]
 

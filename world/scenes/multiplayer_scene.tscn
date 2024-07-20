@@ -8,6 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_qy637")
 
 [node name="AddressLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 147.0
 offset_right = 117.0
@@ -62,6 +63,7 @@ text = "Name
 "
 
 [node name="AddressText" type="LineEdit" parent="."]
+layout_mode = 0
 offset_left = 131.0
 offset_top = 141.0
 offset_right = 527.0
