@@ -1,10 +1,10 @@
 extends Control
 
-#127.0.0.1
+#
 #var address = "192.168.0.27"
 #var ip_address :String
 
-var address = IP.get_local_addresses()
+var address = "0"
 @export var port = 8910
 var peer
 
@@ -43,7 +43,7 @@ func _peer_disconnected(id):
 	
 func _connected_to_server():
 	print("Connected to Server!")
-	_send_player_information.rpc_id(1, $LineEdit.text, multiplayer.get_unique_id())
+	_send_player_information.rpc_id(1, $NameText.text, multiplayer.get_unique_id())
 	
 func _connection_failed():
 	print("Connection failed :(")
@@ -60,7 +60,11 @@ func _send_player_information(name, id):
 	if multiplayer.is_server():
 		for i in GameManager.players:
 			_send_player_information.rpc(GameManager.players[i].name, i)
-	
+
+@rpc("any_peer")
+func _set_IP(newAddress):
+	address = newAddress
+
 @rpc("any_peer","call_local")
 func _start_game():
 	var scene = load("res://world/scenes/world.tscn").instantiate()
@@ -77,12 +81,15 @@ func _host_game():
 	
 	multiplayer.set_multiplayer_peer(peer)
 	print("Waiting for players!")
+	print(str(IP.get_local_addresses()))
 	
 func _on_host_button_down():
+	_set_IP($AddressText.text)
 	_host_game()
-	_send_player_information($LineEdit.text, multiplayer.get_unique_id())
-
+	_send_player_information($NameText.text, multiplayer.get_unique_id())
+	
 func _on_join_button_down():
+	_set_IP($AddressText.text)
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(address, port)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
@@ -90,6 +97,7 @@ func _on_join_button_down():
 
 func _on_startgame_button_down():
 	_start_game.rpc()
+	print(address)
 
 
 
