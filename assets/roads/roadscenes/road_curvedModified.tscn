@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ckx0r5gc2ld"]
+
+[ext_resource type="PackedScene" uid="uid://dnbuty7ddib5d" path="res://assets/roads/roadscenes/curved/road_curve.tscn" id="1_kqawl"]
+[ext_resource type="PackedScene" uid="uid://dikhnbnhqkyjb" path="res://assets/roads/roadscenes/curved/road_curve_barrier.tscn" id="2_w1slc"]
+
+[node name="RoadCurved" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.732656, 0, -0.383704)
+
+[node name="road_curve" parent="." instance=ExtResource("1_kqawl")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, -13)
+
+[node name="road_curveBarrier" parent="." instance=ExtResource("2_w1slc")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, -13)
