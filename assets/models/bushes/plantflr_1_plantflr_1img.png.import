@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kvmhibkkbwi0"
-path.s3tc="res://.godot/imported/Dirt_12-256x256.png-cd78bea7a4fce09aa891178128d18d12.s3tc.ctex"
+uid="uid://dxhlg4vfxg0gr"
+path.s3tc="res://.godot/imported/plantflr_1_plantflr_1img.png-2f884f539c0f445792758ee967050032.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "f3b3192a67312ef6890cb948d7a1ce53"
+}
 
 [deps]
 
-source_file="res://assets/textures/Dirt_12-256x256.png"
-dest_files=["res://.godot/imported/Dirt_12-256x256.png-cd78bea7a4fce09aa891178128d18d12.s3tc.ctex"]
+source_file="res://assets/models/bushes/plantflr_1_plantflr_1img.png"
+dest_files=["res://.godot/imported/plantflr_1_plantflr_1img.png-2f884f539c0f445792758ee967050032.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbewh7jcbift5"]
+
+[ext_resource type="PackedScene" uid="uid://bhf1k3iakb08v" path="res://assets/models/trees/palm/palm_0.glb" id="1_mu323"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l2gi2"]
+points = PackedVector3Array(4.55469, 19.3056, 0.254373, 2.53116, 19.3056, -3.26596, 2.53539, 19.3056, 3.28869, 6.36867, 14.0702, 8.34835, 10.9026, 14.0702, 0.285788, 6.14007, 14.0702, -8.48824, -1.8969, 19.3056, -3.63924, -2.05142, 19.3056, 3.9983, -5.2116, 14.0702, 9.50332, 2.78516, 12.1362, 8.08964, 0.799726, -1, 1.10073, 1.29291, -1, -0.421974, -0.000371933, -1, -1.36258, -4.6147, 14.0702, -9.37525, -4.38186, 19.3056, 0.431775, -10.7213, 14.0702, 0.725597, -0.80047, -1, 1.10073, -1.29577, -1, -0.421974, -5.83813, 12.3191, -5.79948, -8.01617, 12.1362, -2.00381)
+
+[node name="palm_02" instance=ExtResource("1_mu323")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="palm_0" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="palm_0/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_l2gi2")
