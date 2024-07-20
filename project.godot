@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="32BitGameJam"
-run/main_scene="res://world/scenes/multiplayer_scene.tscn"
+run/main_scene="res://world/scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://game_manager.gd"
+GameManager="*res://world/scripts/game_manager.gd"
 
 [input]
 

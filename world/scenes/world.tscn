@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cf3fulblelx4m"]
 
-[ext_resource type="Script" path="res://world/scenes/scene_manager.gd" id="1_evohd"]
+[ext_resource type="Script" path="res://world/scripts/scene_manager.gd" id="1_evohd"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="1_gpkw7"]
 [ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://player/scenes/nissan_gtr.tscn" id="2_7nplu"]
 [ext_resource type="Texture2D" uid="uid://c1o0wu2lhd3gi" path="res://assets/textures/Dirt_13-256x256.png" id="3_dp426"]
