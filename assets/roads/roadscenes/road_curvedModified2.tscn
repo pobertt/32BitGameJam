@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dysac7b7yfmy5"]
+
+[ext_resource type="PackedScene" uid="uid://dnbuty7ddib5d" path="res://assets/roads/roadscenes/curved/road_curve.tscn" id="1_fvfiq"]
+
+[node name="RoadCurved" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.732656, 0, -0.383704)
+
+[node name="road_curve" parent="." instance=ExtResource("1_fvfiq")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, -13)
