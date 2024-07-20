@@ -24,6 +24,9 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if !multiplayer.has_multiplayer_peer():
+		return  # Exit if multiplayer is not active
+	
 	if $MultiplayerSynchronizer.is_multiplayer_authority():
 		eDelta = delta
 		if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():

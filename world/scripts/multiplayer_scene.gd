@@ -30,6 +30,8 @@ func _ready():
 	if "--server" in OS.get_cmdline_args():
 		_host_game()
 	
+	address = get_local_ip()
+
 func _peer_connected(id):
 	print("Player Connected: " + str(id))
 
@@ -84,12 +86,12 @@ func _host_game():
 	print(str(IP.get_local_addresses()))
 	
 func _on_host_button_down():
-	_set_IP($AddressText.text)
+	#_set_IP($AddressText.text)
 	_host_game()
 	_send_player_information($NameText.text, multiplayer.get_unique_id())
 	
 func _on_join_button_down():
-	_set_IP($AddressText.text) 
+	#_set_IP($AddressText.text) 
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(address, port)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
@@ -99,5 +101,10 @@ func _on_startgame_button_down():
 	_start_game.rpc()
 	print(address)
 
-
+func get_local_ip() -> String:
+	var local_ip = IP.get_local_addresses()
+	for ip in local_ip:
+		if ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("172."):
+			return ip
+	return ""
 
