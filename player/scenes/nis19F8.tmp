@@ -514,9 +514,7 @@ wheel_roll_influence = 1.0
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.5
 suspension_travel = 0.15
-suspension_stiffness = 175.0
-damping_compression = 1.0
-damping_relaxation = 1.1
+suspension_stiffness = 90.0
 
 [node name="Circle_003" type="MeshInstance3D" parent="BackLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.381946, 1.63113)
@@ -530,9 +528,7 @@ wheel_roll_influence = 1.0
 wheel_rest_length = 0.2
 wheel_friction_slip = 1.5
 suspension_travel = 0.15
-suspension_stiffness = 175.0
-damping_compression = 1.0
-damping_relaxation = 1.1
+suspension_stiffness = 90.0
 
 [node name="Circle_002" type="MeshInstance3D" parent="BackRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.386056, 1.64118)
@@ -546,9 +542,7 @@ wheel_roll_influence = 1.0
 wheel_rest_length = 0.2
 wheel_friction_slip = 2.0
 suspension_travel = 0.15
-suspension_stiffness = 175.0
-damping_compression = 1.0
-damping_relaxation = 1.1
+suspension_stiffness = 110.0
 
 [node name="Circle_001" type="MeshInstance3D" parent="FrontRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.359, -1.94925)
@@ -562,9 +556,7 @@ wheel_roll_influence = 1.0
 wheel_rest_length = 0.2
 wheel_friction_slip = 2.0
 suspension_travel = 0.15
-suspension_stiffness = 175.0
-damping_compression = 1.0
-damping_relaxation = 1.1
+suspension_stiffness = 110.0
 
 [node name="Circle" type="MeshInstance3D" parent="FrontLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.359, -1.949)

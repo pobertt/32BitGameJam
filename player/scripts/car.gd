@@ -1,7 +1,7 @@
 extends VehicleBody3D
 
 const MAX_STEER = 1
-const ENGINE_POWER = 300
+const ENGINE_POWER = 600
 
 var eDelta = 0
 
@@ -30,8 +30,11 @@ func _physics_process(delta):
 	if $MultiplayerSynchronizer.is_multiplayer_authority():
 		eDelta = delta
 		if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-			steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2.5)
+			steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 8)
 			engine_force = Input.get_axis("down", "up") * ENGINE_POWER
+			#if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+				#engine_force = 600
+			
 			camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
 			camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
 			look_at = look_at.lerp(global_position + linear_velocity, delta * 5.0)
