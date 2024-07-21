@@ -486,8 +486,8 @@ properties/1/replication_mode = 1
 shader = ExtResource("1_jbyir")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
-shader_parameter/colors = 6
-shader_parameter/dither_size = 2
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
 
 [node name="Nissan GTR" type="VehicleBody3D"]
 collision_layer = 2
