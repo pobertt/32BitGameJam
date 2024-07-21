@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="32BitGameJam"
-run/main_scene="res://world/scenes/main_menu.tscn"
+run/main_scene="res://ui/scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -31,6 +31,7 @@ window/stretch/mode="canvas_items"
 folder_colors={
 "res://assets/": "red",
 "res://player/": "orange",
+"res://ui/": "teal",
 "res://world/": "yellow"
 }
 

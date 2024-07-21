@@ -1,6 +1,6 @@
 extends VehicleBody3D
 
-const MAX_STEER = 0.8
+const MAX_STEER = 1
 const ENGINE_POWER = 300
 
 var eDelta = 0

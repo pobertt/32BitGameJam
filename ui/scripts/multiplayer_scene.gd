@@ -12,7 +12,7 @@ var peer
 @onready var join = $HBoxContainer/join
 @onready var startgame = $HBoxContainer/startgame
 
-var game_scene = preload("res://world/scenes/art_test_level.tscn")
+var game_scene = preload("res://world/scenes/track1.tscn")
 
 func _ready():
 	#if OS.has_feature("windows"):
