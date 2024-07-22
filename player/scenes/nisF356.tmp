@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player/scripts/car.gd" id="1_j36kl"]
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_jbyir"]
-[ext_resource type="PackedScene" uid="uid://f08oe7xlcrtu" path="res://ui/scenes/ui.tscn" id="3_j4roj"]
+[ext_resource type="PackedScene" uid="uid://h7gsgifiooru" path="res://ui/scenes/pause_menu.tscn" id="3_0j4of"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_561wb"]
 resource_name = "chasis"
@@ -579,7 +579,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1945, 1)
 replication_config = SubResource("SceneReplicationConfig_jpm11")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-process_mode = 3
 material = SubResource("ShaderMaterial_0oo7t")
 anchors_preset = 15
 anchor_right = 1.0
@@ -604,9 +603,5 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2.9945, 5)
 current = true
 
-[node name="UI" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_j4roj")]
-
-[node name="PauseMenu" parent="SubViewportContainer/SubViewport/UI" index="1"]
+[node name="PauseMenu" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_0j4of")]
 visible = false
-
-[editable path="SubViewportContainer/SubViewport/UI"]

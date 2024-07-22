@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyr1flxflgn48"]
+
+[ext_resource type="Script" path="res://ui/scripts/timerUI.gd" id="1_g52w2"]
+
+[node name="TimerCountdown" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g52w2")
+
+[node name="TimerText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_top = 12.0
+offset_right = 4.0
+offset_bottom = 20.0
+grow_horizontal = 2
+text = "3"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

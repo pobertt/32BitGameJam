@@ -8,9 +8,11 @@ var address = "0"
 @export var port = 8910
 var peer
 
-@onready var host = $HBoxContainer/host
-@onready var join = $HBoxContainer/join
-@onready var startgame = $HBoxContainer/startgame
+var host_pressed : bool = false
+
+@onready var host = $VBoxContainer/host
+@onready var join = $VBoxContainer/join
+@onready var startgame = $VBoxContainer/startgame
 
 var game_scene = preload("res://world/scenes/track1.tscn")
 
@@ -89,8 +91,9 @@ func _host_game():
 	
 func _on_host_button_down():
 	#_set_IP($AddressText.text)
+	host_pressed = true
 	_host_game()
-	_send_player_information($NameText.text, multiplayer.get_unique_id())
+	_send_player_information("", multiplayer.get_unique_id())
 	
 func _on_join_button_down():
 	#_set_IP($AddressText.text) 
@@ -100,8 +103,9 @@ func _on_join_button_down():
 	multiplayer.set_multiplayer_peer(peer)
 
 func _on_startgame_button_down():
-	_start_game.rpc()
-	print(address)
+	if host_pressed == true:
+		_start_game.rpc()
+		print(address)
 
 func get_local_ip() -> String:
 	var local_ip = IP.get_local_addresses()
@@ -110,3 +114,5 @@ func get_local_ip() -> String:
 			return ip
 	return ""
 
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://ui/scenes/play_menu.tscn")

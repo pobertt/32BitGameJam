@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://blq70ia6sfxfk"]
+[gd_scene load_steps=3 format=3 uid="uid://blq70ia6sfxfk"]
 
 [ext_resource type="Script" path="res://ui/scripts/main_menu.gd" id="1_2ujhn"]
+[ext_resource type="PackedScene" uid="uid://caewertk0entr" path="res://player/scenes/countdown.tscn" id="2_61fiq"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -38,6 +39,8 @@ text = "Settings"
 layout_mode = 2
 text = "Quit
 "
+
+[node name="Countdown" parent="." instance=ExtResource("2_61fiq")]
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]

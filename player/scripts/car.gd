@@ -8,6 +8,10 @@ var eDelta = 0
 @onready var camera_pivot = $SubViewportContainer/SubViewport/CameraPivot
 @onready var camera_3d = $SubViewportContainer/SubViewport/CameraPivot/Camera3D
 @onready var reverse_camera = $SubViewportContainer/SubViewport/CameraPivot/ReverseCamera
+@onready var pause_menu = $SubViewportContainer/SubViewport/UI/PauseMenu
+@onready var game_timer = $SubViewportContainer/SubViewport/UI/GameTimer
+
+var paused = false
 
 var look_at
 
@@ -32,9 +36,6 @@ func _physics_process(delta):
 		if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 			steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 8)
 			engine_force = Input.get_axis("down", "up") * ENGINE_POWER
-			#if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
-				#engine_force = 600
-			
 			camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
 			camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
 			look_at = look_at.lerp(global_position + linear_velocity, delta * 5.0)
@@ -43,6 +44,7 @@ func _physics_process(delta):
 			_check_camera_switch()
 			
 			sync_state.rpc(global_position, global_rotation, linear_velocity)
+			
 	else:
 		global_position = global_position.lerp(global_position, delta * 20.0)
 			
@@ -58,3 +60,17 @@ func sync_state(pos: Vector3, rot: Vector3, vel: Vector3):
 	global_rotation = rot
 	linear_velocity = vel
 
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		_pause_menu()
+
+func _pause_menu():
+	if paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		pause_menu.hide()
+		get_tree().paused = false
+		
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+		pause_menu.show()	
