@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dye12qrl6jahv"]
+
+[ext_resource type="Script" path="res://ui/scripts/level_select.gd" id="1_ex81n"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ex81n")
+dir_path = "res://world/scenes/Levels"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 40.0
+offset_right = 173.0
+offset_bottom = 80.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2

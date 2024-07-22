@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://tsmx53kycaan"]
+
+[ext_resource type="AudioStream" uid="uid://c2shnta67yor1" path="res://sfx/On.wav" id="2_8gx5f"]
+
+[sub_resource type="GDScript" id="GDScript_b3w8l"]
+script/source = "extends Node3D
+
+class_name SoundEmitter
+
+@onready var on = $On
+
+var amplification_on: AudioEffectAmplify
+var amplification_off: AudioEffectAmplify
+
+func _ready():
+	on.play()
+
+"
+
+[node name="SoundEmitter" type="Node3D"]
+script = SubResource("GDScript_b3w8l")
+
+[node name="On" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_8gx5f")

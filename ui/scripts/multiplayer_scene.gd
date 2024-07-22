@@ -14,7 +14,7 @@ var host_pressed : bool = false
 @onready var join = $VBoxContainer/join
 @onready var startgame = $VBoxContainer/startgame
 
-var game_scene = preload("res://world/scenes/track1.tscn")
+var game_scene = preload("res://world/scenes/Levels/track1.tscn")
 
 func _ready():
 	#if OS.has_feature("windows"):

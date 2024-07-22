@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cyfmluj2pfhy0"]
+[gd_scene load_steps=28 format=3 uid="uid://cyfmluj2pfhy0"]
 
 [ext_resource type="Script" path="res://player/scripts/car.gd" id="1_j36kl"]
 [ext_resource type="Shader" path="res://world/shaders/psxpostprocess.gdshader" id="1_jbyir"]
 [ext_resource type="PackedScene" uid="uid://f08oe7xlcrtu" path="res://ui/scenes/ui.tscn" id="3_j4roj"]
+[ext_resource type="PackedScene" uid="uid://tsmx53kycaan" path="res://sfx/sound_emitter.tscn" id="4_2nj8i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_561wb"]
 resource_name = "chasis"
@@ -609,4 +610,7 @@ current = true
 [node name="PauseMenu" parent="SubViewportContainer/SubViewport/UI" index="1"]
 visible = false
 
+[node name="SoundEmitter" parent="." instance=ExtResource("4_2nj8i")]
+
 [editable path="SubViewportContainer/SubViewport/UI"]
+[editable path="SoundEmitter"]
