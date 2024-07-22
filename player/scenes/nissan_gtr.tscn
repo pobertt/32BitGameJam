@@ -491,7 +491,7 @@ shader_parameter/dithering = true
 shader_parameter/colors = 12
 shader_parameter/dither_size = 1
 
-[node name="Nissan GTR" type="VehicleBody3D"]
+[node name="Nissan GTR" type="VehicleBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 3
 mass = 70.0

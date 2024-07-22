@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=14 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Script" path="res://world/scripts/scene_manager.gd" id="1_3m3aw"]
 [ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://player/scenes/nissan_gtr.tscn" id="2_t3usr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjwxersjshemy" path="res://assets/roads/roadscenes/road_slantModified.tscn" id="5_0mtcy"]
 [ext_resource type="PackedScene" uid="uid://bpbbxdu21bfqm" path="res://assets/roads/roadscenes/road_slant_curvedModified.tscn" id="6_cqeyt"]
 [ext_resource type="Shader" path="res://world/shaders/anime-esquewater.gdshader" id="7_bhixc"]
+[ext_resource type="PackedScene" uid="uid://cs3k2hdjbkvd4" path="res://world/scenes/checkpoint.tscn" id="8_f0w0h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -263,3 +264,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.5322, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.306165, 0)
 mesh = SubResource("PlaneMesh_3b31k")
 skeleton = NodePath("../../..")
+
+[node name="Checkpoint" parent="environment" instance=ExtResource("8_f0w0h")]
+transform = Transform3D(2.84079, 0, 0, 0, 1.98727, 0, 0, 0, 9.10349, 278.43, -0.483498, 29.4929)
