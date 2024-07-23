@@ -49,7 +49,7 @@ func _peer_disconnected(id):
 	
 func _connected_to_server():
 	print("Connected to Server!")
-	_send_player_information.rpc_id(1, $NameText.text, multiplayer.get_unique_id())
+	_send_player_information.rpc_id(1, "", multiplayer.get_unique_id())
 	
 func _connection_failed():
 	print("Connection failed :(")
