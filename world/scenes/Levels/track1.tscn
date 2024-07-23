@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cf3fulblelx4m"]
+[gd_scene load_steps=21 format=3 uid="uid://cf3fulblelx4m"]
 
 [ext_resource type="Script" path="res://world/scripts/scene_manager.gd" id="1_3m3aw"]
 [ext_resource type="PackedScene" uid="uid://cyfmluj2pfhy0" path="res://player/scenes/nissan_gtr.tscn" id="2_t3usr"]
@@ -11,8 +11,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cosatltjriy1g" path="res://assets/models/trees/palm/sm_palm_02.res" id="10_ilfp1"]
 [ext_resource type="Shader" path="res://assets/shaders/psx_ocean.gdshader" id="10_nt1vq"]
 [ext_resource type="Texture2D" uid="uid://dljsru54knecy" path="res://assets/textures/old/clear+sea+water-512x512.jpg" id="11_v1fid"]
-[ext_resource type="Texture2D" uid="uid://bdnivuw8y4uia" path="res://assets/textures/tinytexturepack/stone/Stone_06-256x256.png" id="12_4k7sc"]
-[ext_resource type="Texture2D" uid="uid://cc1himdqloxd1" path="res://assets/textures/tinytexturepack/stone/Stone_05-256x256.png" id="12_4y3ap"]
+[ext_resource type="PackedScene" uid="uid://co1khq6tvddlg" path="res://world/scenes/exportlevelscene.tscn" id="12_6qlms"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rjpoh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -57,13 +56,6 @@ material = SubResource("ShaderMaterial_y4n14")
 size = Vector2(1000, 1000)
 subdivide_width = 300
 subdivide_depth = 300
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcaxc"]
-albedo_texture = ExtResource("12_4y3ap")
-uv1_scale = Vector3(1.35, 1.35, 1.35)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmf6n"]
-albedo_texture = ExtResource("12_4k7sc")
 
 [node name="track1" type="Node3D"]
 script = ExtResource("1_3m3aw")
@@ -373,66 +365,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.5322, 0)
 mesh = SubResource("PlaneMesh_ch5i5")
 skeleton = NodePath("../..")
 
-[node name="hill" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8053, 1.06964, 0)
-material_override = SubResource("StandardMaterial3D_jcaxc")
-
-[node name="CSGTorus3D5" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.1779, -20.895, 136.149)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D4" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2939, -20.1058, 178.786)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D6" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.837, -20.1058, 42.6023)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D7" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.182, -20.1058, -25.0737)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D8" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2305, -27.4289, 175.739)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D9" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7, -26.2802, 119.308)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D10" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.2464, -26.8055, 36.4198)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D11" type="CSGTorus3D" parent="hill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.30271, 129.82, -87.9859, -5.48271)
-inner_radius = 60.0
-outer_radius = 299.665
-sides = 10
-
-[node name="mountain" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6137, 0, 0)
-material_override = SubResource("StandardMaterial3D_rmf6n")
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="mountain"]
-transform = Transform3D(-0.772734, 0.498423, -0.39301, 0, 0.619176, 0.785252, 0.63473, 0.606791, -0.478458, -233.932, 25.6556, 183.434)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D2" type="CSGTorus3D" parent="mountain"]
-transform = Transform3D(-0.242838, 0.92282, -0.299053, 0.31113, 0.366087, 0.877028, 0.918819, 0.119932, -0.376017, -227.51, 42.8686, 150.243)
-inner_radius = 0.001
-outer_radius = 107.121
-
-[node name="CSGTorus3D3" type="CSGTorus3D" parent="mountain"]
-transform = Transform3D(0.758314, 0.460624, -0.461287, 0.31113, 0.366087, 0.877028, 0.572852, -0.808583, 0.134295, -250.845, -11.4778, 42.8957)
-inner_radius = 0.001
-outer_radius = 107.121
+[node name="mountain_hill" parent="." instance=ExtResource("12_6qlms")]
