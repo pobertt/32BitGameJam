@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/scripts/pause_menu.gd" id="1_suyb3"]
 
 [node name="PauseMenu" type="Control"]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,11 +29,13 @@ grow_vertical = 2
 
 [node name="Resume" type="Button" parent="VBoxContainer"]
 process_mode = 2
+process_priority = 1
 layout_mode = 2
 text = "Resume"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 process_mode = 2
+process_priority = 1
 layout_mode = 2
 text = "Quit"
 

@@ -14,8 +14,6 @@ var host_pressed : bool = false
 @onready var join = $VBoxContainer/join
 @onready var startgame = $VBoxContainer/startgame
 
-var game_scene = preload("res://world/scenes/Levels/track1.tscn")
-
 func _ready():
 	#if OS.has_feature("windows"):
 		#if OS.get_environment("COMPUTERNAME"):
@@ -73,7 +71,7 @@ func _set_IP(newAddress):
 
 @rpc("any_peer","call_local")
 func _start_game():
-	var scene = game_scene.instantiate()
+	var scene = GameManager.track_scene.instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 	

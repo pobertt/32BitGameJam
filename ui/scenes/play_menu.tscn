@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3rdo1rm7w5sj"]
+[gd_scene load_steps=3 format=3 uid="uid://d3rdo1rm7w5sj"]
 
 [ext_resource type="Script" path="res://ui/scripts/player_menu.gd" id="1_rrscw"]
+[ext_resource type="PackedScene" uid="uid://d0hv7sqdtsb4y" path="res://ui/scenes/levelselect2.tscn" id="2_garfm"]
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
@@ -39,6 +40,12 @@ layout_mode = 2
 text = "Back
 "
 
+[node name="Levelselect2" parent="." instance=ExtResource("2_garfm")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
+
+[editable path="Levelselect2"]

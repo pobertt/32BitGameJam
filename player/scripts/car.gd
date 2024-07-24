@@ -68,19 +68,20 @@ func sync_state(pos: Vector3, rot: Vector3, vel: Vector3):
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
-		_pause_menu()
+		#_pause_menu()
+		pass
 
 func _pause_menu():
 	if paused:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		pause_menu.hide()
-		timer_countdown.paused()
 		get_tree().paused = false
-		
+		pause_menu.hide()
+		timer_countdown.start()
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		pause_menu.show()
 		get_tree().paused = true
-		timer_countdown.start()
+		timer_countdown.stop()
 
 func _on_game_timer_timer_completed():
 	can_move = true

@@ -1,10 +1,8 @@
 extends Control
 
-var game_scene = preload("res://world/scenes/Levels/art_test_level.tscn")
-
 func _on_singleplayer_pressed():
 	_send_player_information("singleplayername", multiplayer.get_unique_id())
-	var scene = game_scene.instantiate()
+	var scene = GameManager.track_scene.instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 
@@ -26,4 +24,4 @@ func _send_player_information(name, id):
 
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://ui/scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://ui/scenes/levelselect2.tscn")

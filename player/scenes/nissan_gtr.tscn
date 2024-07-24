@@ -608,6 +608,7 @@ current = true
 [node name="UI" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_j4roj")]
 
 [node name="PauseMenu" parent="SubViewportContainer/SubViewport/UI" index="1"]
+process_mode = 2
 visible = false
 
 [node name="SoundEmitter" parent="." instance=ExtResource("4_2nj8i")]
