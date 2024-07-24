@@ -612,5 +612,8 @@ visible = false
 
 [node name="SoundEmitter" parent="." instance=ExtResource("4_2nj8i")]
 
+[connection signal="timer_completed" from="SubViewportContainer/SubViewport/UI/GameTimer" to="." method="_on_game_timer_timer_completed"]
+
 [editable path="SubViewportContainer/SubViewport/UI"]
+[editable path="SubViewportContainer/SubViewport/UI/TimerCountdown"]
 [editable path="SoundEmitter"]
