@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bomumosf7hcjc"]
+
+[ext_resource type="Script" path="res://sfx/scripts/HSlider.gd" id="1_78x1w"]
+
+[node name="HSlider" type="HSlider"]
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("1_78x1w")

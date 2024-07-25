@@ -1,23 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs3k2hdjbkvd4"]
 
 [ext_resource type="Script" path="res://world/scripts/checkpoint.gd" id="1_li6by"]
+[ext_resource type="PackedScene" uid="uid://dfh0tnlh4p1h2" path="res://ui/scenes/lap_counter.tscn" id="2_5fvjw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_errqu"]
 size = Vector3(5, 5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6sare"]
 
 [node name="Checkpoint" type="Node3D"]
 script = ExtResource("1_li6by")
 
 [node name="Area3D" type="Area3D" parent="." groups=["checkpoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_errqu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-mesh = SubResource("BoxMesh_6sare")
+[node name="LapCounter" parent="." instance=ExtResource("2_5fvjw")]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="LapCounter"]

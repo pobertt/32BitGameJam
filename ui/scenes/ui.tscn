@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://f08oe7xlcrtu"]
+[gd_scene load_steps=5 format=3 uid="uid://f08oe7xlcrtu"]
 
 [ext_resource type="PackedScene" uid="uid://dyr1flxflgn48" path="res://ui/scenes/timer_countdownUI.tscn" id="1_ps3o3"]
 [ext_resource type="PackedScene" uid="uid://h7gsgifiooru" path="res://ui/scenes/pause_menu.tscn" id="2_7temo"]
 [ext_resource type="PackedScene" uid="uid://c2omml3v15uoy" path="res://ui/scenes/game_timer.tscn" id="3_nusn8"]
+[ext_resource type="PackedScene" uid="uid://dfh0tnlh4p1h2" path="res://ui/scenes/lap_counter.tscn" id="4_dqfw3"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -19,4 +20,7 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="TimerCountdown" parent="." instance=ExtResource("3_nusn8")]
+layout_mode = 1
+
+[node name="LapCounter" parent="." instance=ExtResource("4_dqfw3")]
 layout_mode = 1

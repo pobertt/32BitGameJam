@@ -85,4 +85,3 @@ func _pause_menu():
 
 func _on_game_timer_timer_completed():
 	can_move = true
-

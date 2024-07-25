@@ -22,3 +22,4 @@ script = SubResource("GDScript_b3w8l")
 
 [node name="On" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_8gx5f")
+autoplay = true
