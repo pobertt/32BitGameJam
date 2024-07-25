@@ -1,6 +1,6 @@
 extends Control
 
-var game_scene = preload("res://world/scenes/track1.tscn")
+var game_scene = preload("res://world/scenes/art_test_level.tscn")
 
 func _on_singleplayer_pressed():
 	_send_player_information("singleplayername", multiplayer.get_unique_id())
