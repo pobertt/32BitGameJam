@@ -108,7 +108,7 @@ func _on_startgame_button_down():
 func get_local_ip() -> String:
 	var local_ip = IP.get_local_addresses()
 	for ip in local_ip:
-		if ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("172."):
+		if ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("172.") or ip.begins_with("169."):
 			return ip
 	return ""
 
